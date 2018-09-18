@@ -1,0 +1,108 @@
+<html>
+
+<head>
+    <title>News Finder</title>
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        .load {
+            display: block;
+            position: fixed;
+            z-index: 100;
+            background-image: url('loading.gif');
+            background-color: #666;
+            opacity: 0.4;
+            background-repeat: no-repeat;
+            background-position: center;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body ng-app="emailFinder">
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand brand-text">News Finder</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="">Analytics</a></li>
+                <li><a href="">Reports</a></li>
+                <li><a href="">Others</a></li>
+              </ul>
+            <!-- /navbar-collapse -->
+        </div>
+        <!-- /container -->
+    </div>
+    <div class="container" ng-controller="mainCtrl">
+        <div class="row">
+            <form name="myForm">
+                <div class="col-md-6"><input placeholder="Enter search query" type="text" class="form-control" ng-model="query" required/> </div>
+                <div class="col-md-6"><button ng-disabled="myForm.$invalid || !(isBing || isGoogle) || isLoading" class="btn btn-primary" type="submit" ng-click="searchNews()">Go</button></div>
+            </form>
+        </div>
+        <!-- <div class="row">
+            <div class="col-md-2">
+                <div class="form-check" ng-if="!isGoogleLoading">
+                    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" ng-model="isGoogle">
+      Google 
+    </label> 
+                </div><span ng-if="isGoogleLoading"><strong><img src="bars.gif" > Google</strong></span>
+            </div>
+            <div class="col-md-2">
+                <div class="form-check" ng-if="!isBingLoading">
+                    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" ng-model="isBing">
+      Bing 
+    </label> 
+                </div><span ng-if="isBingLoading"><strong><img src="bars.gif" > Bing</strong></span>
+            </div>
+        </div> -->
+        <hr/>
+        <br>
+        <!--<div class="row" ng-if="isLoading">
+            <div class="col-md-12 load">
+
+            </div>
+        </div>-->
+
+        <div class="row" >
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead style="
+                    background: #f9f9f9;
+                ">
+                        <tr>
+                            <th>URL</th>
+                            <th>Summary</th>
+                            <th>Keywords    </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="!results || !results.length">
+                            <td colspan="3" style="height:200px; vertical-align: middle">
+                                <center>Search for a name to get the results.</center>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="row in results">
+                            <td><a ng-href="{{row.url}}">{{row.url}}</a></td>
+                            <td>{{row.text.substring(0,300)}}...</td>
+                            <td>{{row.keywords.join(",")}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
