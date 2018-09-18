@@ -1,0 +1,26 @@
+{
+  "name": "feed-reader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ishan",
+  "license": "ISC",
+  "dependencies": {
+    "article-extractor": "^1.0.2",
+    "async": "^2.6.0",
+    "boilerpipe": "0.0.7",
+    "csv-write-stream": "^2.0.0",
+    "docrouter": "^0.7.0",
+    "elasticsearch": "^14.0.0",
+    "fast-csv": "^2.4.1",
+    "feedparser": "^2.2.7",
+    "fsmonitor": "^0.2.4",
+    "natural": "^0.6.1",
+    "python-shell": "^0.5.0",
+    "rss-parser": "^3.4.3",
+    "wordnet-db": "^3.1.6"
+  }
+}
